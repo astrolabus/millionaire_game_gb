@@ -35,11 +35,25 @@ class GameViewController: UIViewController {
     var currentQuestion = 0
     var points = 0
     
+    var mode: Mode = Game.shared.selectedMode ?? .consecutively
+    private var modeStrategy: ModeStrategy? {
+        switch self.mode {
+        case .consecutively:
+            return ConsecutivelyModeStrategy()
+        case .randomly:
+            return RandomModeStrategy()
+        }
+    }
+    private var data = [Question]()
+    
     weak var gameDelegate: GameDelegate?
     
     @IBOutlet weak var quitButton: UIButton!
     
     @IBOutlet weak var questionNumber: UILabel!
+    @IBOutlet weak var progressLabel: UILabel!
+    
+    
     @IBOutlet weak var questionView: UIView! {
         didSet {
             questionView.layer.cornerRadius = 25
@@ -50,32 +64,24 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var answerOne: UIButton! {
         didSet {
-            answerOne.layer.borderColor = UIColor.blue.cgColor
-            answerOne.layer.borderWidth = 2
             answerOne.layer.cornerRadius = 10
             answerOne.clipsToBounds = true
         }
     }
     @IBOutlet weak var ansswerTwo: UIButton! {
         didSet {
-            ansswerTwo.layer.borderColor = UIColor.blue.cgColor
-            ansswerTwo.layer.borderWidth = 2
             ansswerTwo.layer.cornerRadius = 10
             ansswerTwo.clipsToBounds = true
         }
     }
     @IBOutlet weak var answerThree: UIButton! {
         didSet {
-            answerThree.layer.borderColor = UIColor.blue.cgColor
-            answerThree.layer.borderWidth = 2
             answerThree.layer.cornerRadius = 10
             answerThree.clipsToBounds = true
         }
     }
     @IBOutlet weak var answerFour: UIButton! {
         didSet {
-            answerFour.layer.borderColor = UIColor.blue.cgColor
-            answerFour.layer.borderWidth = 2
             answerFour.layer.cornerRadius = 10
             answerFour.clipsToBounds = true
         }
@@ -90,6 +96,11 @@ class GameViewController: UIViewController {
         answerFour.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         
         quitButton.addTarget(self, action: #selector(quitGame), for: .touchUpInside)
+        
+        addNewQuestions()
+        
+        data = self.modeStrategy?.setUpMode(questions) ?? []
+        
         setQuestions()
     }
     
@@ -99,17 +110,17 @@ class GameViewController: UIViewController {
     
     @objc private func buttonTapped(_ sender: UIButton) {
         
-        if sender.titleLabel?.text == questions[currentQuestion].rightAnswer {
+        if sender.titleLabel?.text == data[currentQuestion].rightAnswer {
             points += 1
-            if points == questions.count {
-                gameDelegate?.updateGameSession(with: points, questionsCount: questions.count)
+            if points == data.count {
+                gameDelegate?.updateGameSession(with: points, questionsCount: data.count)
                 dismiss(animated: true, completion: nil)
             } else {
                 currentQuestion += 1
                 setQuestions()
             }
         } else {
-            gameDelegate?.updateGameSession(with: points, questionsCount: questions.count)
+            gameDelegate?.updateGameSession(with: points, questionsCount: data.count)
             dismiss(animated: true, completion: nil)
         }
         
@@ -117,18 +128,27 @@ class GameViewController: UIViewController {
     
     private func setQuestions() {
         
+        let progress = (points * 100)/data.count
+        
         questionNumber.text = "Вопрос №\(currentQuestion + 1)"
-        questionLabel.text = questions[currentQuestion].question
+        progressLabel.text = "\(progress)%"
+        questionLabel.text = data[currentQuestion].question
         
         let buttonArr = [answerOne, ansswerTwo, answerThree, answerFour]
         var buttonCount = 0
         
         for button in buttonArr {
-            button?.setTitle(questions[currentQuestion].answers[buttonCount], for: .normal)
+            button?.setTitle(data[currentQuestion].answers[buttonCount], for: .normal)
             buttonCount += 1
         }
         
         buttonCount = 0
+    }
+    
+    private func addNewQuestions() {
+        if !Game.shared.questions.isEmpty {
+            questions.append(contentsOf: Game.shared.questions)
+        }
     }
 
 }

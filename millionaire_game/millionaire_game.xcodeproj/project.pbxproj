@@ -22,6 +22,13 @@
 		2E193431254552C200220512 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E193430254552C200220512 /* Question.swift */; };
 		2E1934342545BF2400220512 /* RecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1934332545BF2400220512 /* RecordsTableViewCell.swift */; };
 		2E1934372545CB0500220512 /* RecordsCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1934362545CB0500220512 /* RecordsCaretaker.swift */; };
+		2E19343C254EF01200220512 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E19343B254EF01200220512 /* SettingsViewController.swift */; };
+		2E19343E254EF02900220512 /* AddQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E19343D254EF02900220512 /* AddQuestionViewController.swift */; };
+		2E193441254EFA3F00220512 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E193440254EFA3F00220512 /* Mode.swift */; };
+		2E193443254EFAC300220512 /* ModeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E193442254EFAC300220512 /* ModeStrategy.swift */; };
+		2E193445254EFAE400220512 /* RandomModeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E193444254EFAE400220512 /* RandomModeStrategy.swift */; };
+		2E193447254EFB0300220512 /* ConsecutivelyModeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E193446254EFB0300220512 /* ConsecutivelyModeStrategy.swift */; };
+		2E19344C254F24CF00220512 /* QuestionsCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E19344B254F24CF00220512 /* QuestionsCaretaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +49,13 @@
 		2E193430254552C200220512 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		2E1934332545BF2400220512 /* RecordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsTableViewCell.swift; sourceTree = "<group>"; };
 		2E1934362545CB0500220512 /* RecordsCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsCaretaker.swift; sourceTree = "<group>"; };
+		2E19343B254EF01200220512 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		2E19343D254EF02900220512 /* AddQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionViewController.swift; sourceTree = "<group>"; };
+		2E193440254EFA3F00220512 /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
+		2E193442254EFAC300220512 /* ModeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeStrategy.swift; sourceTree = "<group>"; };
+		2E193444254EFAE400220512 /* RandomModeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomModeStrategy.swift; sourceTree = "<group>"; };
+		2E193446254EFB0300220512 /* ConsecutivelyModeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsecutivelyModeStrategy.swift; sourceTree = "<group>"; };
+		2E19344B254F24CF00220512 /* QuestionsCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsCaretaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +88,8 @@
 		2E19340C2545486700220512 /* millionaire_game */ = {
 			isa = PBXGroup;
 			children = (
+				2E193448254F1D6300220512 /* Observer */,
+				2E19343F254EF47E00220512 /* Strategy */,
 				2E1934352545C44A00220512 /* Memento */,
 				2E1934252545494A00220512 /* Classes */,
 				2E1934222545488B00220512 /* Model */,
@@ -96,6 +112,8 @@
 				2E19342A2545498600220512 /* MainViewController.swift */,
 				2E19342C2545499400220512 /* GameViewController.swift */,
 				2E19342E254549B200220512 /* RecordsViewController.swift */,
+				2E19343B254EF01200220512 /* SettingsViewController.swift */,
+				2E19343D254EF02900220512 /* AddQuestionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -105,6 +123,7 @@
 			children = (
 				2E193423254548B400220512 /* Records.swift */,
 				2E193430254552C200220512 /* Question.swift */,
+				2E193440254EFA3F00220512 /* Mode.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -130,8 +149,26 @@
 			isa = PBXGroup;
 			children = (
 				2E1934362545CB0500220512 /* RecordsCaretaker.swift */,
+				2E19344B254F24CF00220512 /* QuestionsCaretaker.swift */,
 			);
 			path = Memento;
+			sourceTree = "<group>";
+		};
+		2E19343F254EF47E00220512 /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+				2E193442254EFAC300220512 /* ModeStrategy.swift */,
+				2E193444254EFAE400220512 /* RandomModeStrategy.swift */,
+				2E193446254EFB0300220512 /* ConsecutivelyModeStrategy.swift */,
+			);
+			path = Strategy;
+			sourceTree = "<group>";
+		};
+		2E193448254F1D6300220512 /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Observer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,12 +247,19 @@
 				2E1934122545486700220512 /* ViewController.swift in Sources */,
 				2E19342F254549B200220512 /* RecordsViewController.swift in Sources */,
 				2E1934272545495A00220512 /* Game.swift in Sources */,
+				2E193443254EFAC300220512 /* ModeStrategy.swift in Sources */,
 				2E19340E2545486700220512 /* AppDelegate.swift in Sources */,
 				2E193431254552C200220512 /* Question.swift in Sources */,
 				2E19342D2545499400220512 /* GameViewController.swift in Sources */,
 				2E193424254548B400220512 /* Records.swift in Sources */,
 				2E1934292545496C00220512 /* GameSession.swift in Sources */,
+				2E19344C254F24CF00220512 /* QuestionsCaretaker.swift in Sources */,
+				2E19343C254EF01200220512 /* SettingsViewController.swift in Sources */,
+				2E193441254EFA3F00220512 /* Mode.swift in Sources */,
+				2E193447254EFB0300220512 /* ConsecutivelyModeStrategy.swift in Sources */,
+				2E193445254EFAE400220512 /* RandomModeStrategy.swift in Sources */,
 				2E1934102545486700220512 /* SceneDelegate.swift in Sources */,
+				2E19343E254EF02900220512 /* AddQuestionViewController.swift in Sources */,
 				2E1934342545BF2400220512 /* RecordsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
