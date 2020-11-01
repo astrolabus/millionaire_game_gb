@@ -11,4 +11,6 @@ import Foundation
 class GameSession {
     var result: Int?
     var questionCount: Int?
+    
+    var question: Question?
 }

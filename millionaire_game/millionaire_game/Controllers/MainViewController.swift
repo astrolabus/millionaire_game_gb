@@ -27,6 +27,16 @@ class MainViewController: UIViewController {
             showRecords.clipsToBounds = true
         }
     }
+    
+    @IBOutlet weak var settingsButton: UIButton! {
+        didSet {
+            settingsButton.layer.borderColor = UIColor.systemYellow.cgColor
+            settingsButton.layer.borderWidth = 2
+            settingsButton.layer.cornerRadius = 10
+            settingsButton.clipsToBounds = true
+        }
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
